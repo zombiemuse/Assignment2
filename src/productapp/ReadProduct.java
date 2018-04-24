@@ -10,6 +10,7 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -21,9 +22,7 @@ public class ReadProduct {
     NumberFormat nf = NumberFormat.getCurrencyInstance();
     
 public void readProductFile(){    
-//    Product p = new Product(code, name, price);
-//    p.id = "my id";
-//    mapCodeProduct.put(p.id, p);
+    
     
     try{
     File productFile = new File("Products.txt");
@@ -36,9 +35,12 @@ public void readProductFile(){
                 Product prod = new Product();
                 prod.setCode(col[0]);
                 prod.setName(col[1]);
-                prod.setPrice(Float.parseFloat(col[3]));
+                prod.setPrice(Float.parseFloat(col[2]));
                 listProduct.add(prod);
                 line = bReader.readLine();
+                
+                mapCodeProduct.put(col[0], prod);
+                
             }
 }
     catch(Exception e) {
@@ -49,6 +51,7 @@ public void readProductFile(){
 }
 
 public ArrayList<Product> getListProduct(){
+    System.out.println(listProduct);
     return listProduct; 
 }
 
